@@ -1,0 +1,56 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<meta name="Generator" content="EditPlus"/>
+<meta name="Author" content="小荷"/>
+<meta name="Keywords" content=""/>
+<meta name="Description" content=""/>
+    <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
+    <link href="../../Content/Site.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../../Content/calendar-win2k-cold-1.css" title="win2k-cold-1" />
+    
+  <script type="text/javascript" src="../../Scripts/calendar.js"></script>
+
+  <script type="text/javascript" src="../../Scripts/calendar-en.js"></script>
+
+  <script type="text/javascript" src="../../Scripts/calendar-setup.js"></script>
+</head>
+
+<body>
+    <div class="page">
+
+    <div id="header">
+        <h1>基于wot智能小车核辐射监测系统</h1> 
+            <div id="title">
+           
+                
+            </div>
+              
+            <div id="logindisplay">
+                <%--<% Html.RenderPartial("LogOnUserControl"); %>--%>
+            </div> 
+            
+            <div id="menucontainer">
+            
+                <ul id="menu">              
+                    <li><%: Html.ActionLink("远程遥控小车", "Remote", "Home")%></li>
+                    <li><%: Html.ActionLink("远程信息采集", "Collect", "Home")%></li>
+                    <li><%: Html.ActionLink("读取信息", "Read", "Home")%></li>
+                </ul>
+            
+            </div>
+        </div>
+
+        <div id="main">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+
+            <div id="footer">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

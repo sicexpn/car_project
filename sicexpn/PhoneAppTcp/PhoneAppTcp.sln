@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneAppTcp", "PhoneAppTcp\PhoneAppTcp.csproj", "{4836FEF9-BB4D-4202-BA23-8114D961EF71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocketAsyncClient", "H:\毕设\开发程序\socket-tcp\SocketAsyncClient\SocketAsyncClient.csproj", "{60AFF14B-D468-4AD1-AFBE-35EA6B6E8F92}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://182.50.9.129:8080/tfs/%e5%95%86%e4%b8%9a%e9%a1%b9%e7%9b%ae
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = PhoneAppTcp\\PhoneAppTcp.csproj
+		SccProjectName1 = PhoneAppTcp
+		SccLocalPath1 = PhoneAppTcp
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4836FEF9-BB4D-4202-BA23-8114D961EF71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4836FEF9-BB4D-4202-BA23-8114D961EF71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4836FEF9-BB4D-4202-BA23-8114D961EF71}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{4836FEF9-BB4D-4202-BA23-8114D961EF71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4836FEF9-BB4D-4202-BA23-8114D961EF71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4836FEF9-BB4D-4202-BA23-8114D961EF71}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{60AFF14B-D468-4AD1-AFBE-35EA6B6E8F92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60AFF14B-D468-4AD1-AFBE-35EA6B6E8F92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60AFF14B-D468-4AD1-AFBE-35EA6B6E8F92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60AFF14B-D468-4AD1-AFBE-35EA6B6E8F92}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

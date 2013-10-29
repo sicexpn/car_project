@@ -1,0 +1,290 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AdminModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="AdminModelStoreContainer">
+          <EntitySet Name="questions" EntityType="AdminModel.Store.questions" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Reports" EntityType="AdminModel.Store.Reports" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Students" EntityType="AdminModel.Store.Students" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SuperUser" EntityType="AdminModel.Store.SuperUser" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Reports_questions" Association="AdminModel.Store.FK_Reports_questions">
+            <End Role="questions" EntitySet="questions" />
+            <End Role="Reports" EntitySet="Reports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reports_Students" Association="AdminModel.Store.FK_Reports_Students">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="Reports" EntitySet="Reports" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="questions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Question" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="A" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="B" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="C" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="D" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Answers" Type="varchar" Nullable="false" MaxLength="4" />
+        </EntityType>
+        <EntityType Name="Reports">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="StuId" Type="int" Nullable="false" />
+          <Property Name="stuName" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="QuestionId" Type="int" Nullable="false" />
+          <Property Name="Question" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="A" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="B" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="C" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="D" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CorrectAnswer" Type="varchar" Nullable="false" MaxLength="4" />
+          <Property Name="UserAnswer" Type="varchar" MaxLength="4" />
+          <Property Name="Grade" Type="float" />
+        </EntityType>
+        <EntityType Name="Students">
+          <Key>
+            <PropertyRef Name="stuId" />
+          </Key>
+          <Property Name="stuId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="userName" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="passWord" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="baseGrade" Type="float" />
+          <Property Name="Grade" Type="float" />
+          <Property Name="Grade1" Type="float" />
+          <Property Name="Grade2" Type="float" />
+        </EntityType>
+        <EntityType Name="SuperUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="20" />
+        </EntityType>
+        <Association Name="FK_Reports_questions">
+          <End Role="questions" Type="AdminModel.Store.questions" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Reports" Type="AdminModel.Store.Reports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="questions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reports">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reports_Students">
+          <End Role="Students" Type="AdminModel.Store.Students" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Reports" Type="AdminModel.Store.Reports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="stuId" />
+            </Principal>
+            <Dependent Role="Reports">
+              <PropertyRef Name="StuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AdminModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="AdminEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="questions" EntityType="AdminModel.question" />
+          <EntitySet Name="SuperUser" EntityType="AdminModel.SuperUser" />
+          <EntitySet Name="Reports" EntityType="AdminModel.report" />
+          <AssociationSet Name="FK_Reports_questions" Association="AdminModel.FK_Reports_questions">
+            <End Role="question" EntitySet="questions" />
+            <End Role="Reports" EntitySet="Reports" />
+          </AssociationSet>
+          <EntitySet Name="Students" EntityType="AdminModel.student" />
+          <AssociationSet Name="FK_Reports_Students" Association="AdminModel.FK_Reports_Students">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="report" EntitySet="Reports" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="question">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Question" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="A" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="B" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="C" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="D" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Answers" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Reports" Relationship="AdminModel.FK_Reports_questions" FromRole="question" ToRole="Reports" />
+        </EntityType>
+        <EntityType Name="SuperUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="report">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="StuId" Nullable="false" />
+          <Property Type="String" Name="stuName" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="QuestionId" Nullable="false" />
+          <Property Type="String" Name="Question" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="A" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="B" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="C" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="D" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CorrectAnswer" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="UserAnswer" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="Grade" />
+          <NavigationProperty Name="questions" Relationship="AdminModel.FK_Reports_questions" FromRole="Reports" ToRole="question" />
+          <NavigationProperty Name="Students" Relationship="AdminModel.FK_Reports_Students" FromRole="report" ToRole="Students" />
+        </EntityType>
+        <Association Name="FK_Reports_questions">
+          <End Type="AdminModel.question" Role="question" Multiplicity="1" />
+          <End Type="AdminModel.report" Role="Reports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reports">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="student">
+          <Key>
+            <PropertyRef Name="stuId" />
+          </Key>
+          <Property Type="Int32" Name="stuId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="userName" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="passWord" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Double" Name="baseGrade" />
+          <Property Type="Double" Name="Grade" />
+          <NavigationProperty Name="Reports" Relationship="AdminModel.FK_Reports_Students" FromRole="Students" ToRole="report" />
+          <Property Type="Double" Name="Grade1" />
+          <Property Type="Double" Name="Grade2" />
+        </EntityType>
+        <Association Name="FK_Reports_Students">
+          <End Type="AdminModel.student" Role="Students" Multiplicity="1" />
+          <End Type="AdminModel.report" Role="report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="stuId" />
+            </Principal>
+            <Dependent Role="report">
+              <PropertyRef Name="StuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AdminModelStoreContainer" CdmEntityContainer="AdminEntities">
+          <EntitySetMapping Name="questions">
+            <EntityTypeMapping TypeName="AdminModel.question">
+              <MappingFragment StoreEntitySet="questions">
+                <ScalarProperty Name="Answers" ColumnName="Answers" />
+                <ScalarProperty Name="D" ColumnName="D" />
+                <ScalarProperty Name="C" ColumnName="C" />
+                <ScalarProperty Name="B" ColumnName="B" />
+                <ScalarProperty Name="A" ColumnName="A" />
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SuperUser">
+            <EntityTypeMapping TypeName="AdminModel.SuperUser">
+              <MappingFragment StoreEntitySet="SuperUser">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reports">
+            <EntityTypeMapping TypeName="AdminModel.report">
+              <MappingFragment StoreEntitySet="Reports">
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="UserAnswer" ColumnName="UserAnswer" />
+                <ScalarProperty Name="CorrectAnswer" ColumnName="CorrectAnswer" />
+                <ScalarProperty Name="D" ColumnName="D" />
+                <ScalarProperty Name="C" ColumnName="C" />
+                <ScalarProperty Name="B" ColumnName="B" />
+                <ScalarProperty Name="A" ColumnName="A" />
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="stuName" ColumnName="stuName" />
+                <ScalarProperty Name="StuId" ColumnName="StuId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="AdminModel.student">
+              <MappingFragment StoreEntitySet="Students">
+                <ScalarProperty Name="Grade2" ColumnName="Grade2" />
+                <ScalarProperty Name="Grade1" ColumnName="Grade1" />
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="baseGrade" ColumnName="baseGrade" />
+                <ScalarProperty Name="passWord" ColumnName="passWord" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="stuId" ColumnName="stuId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="StudentsModel">
+        <EntityTypeShape EntityType="AdminModel.question" Width="1.5" PointX="0.75" PointY="5.5" Height="2.4746101888020844" />
+        <EntityTypeShape EntityType="AdminModel.SuperUser" Width="1.5" PointX="5.75" PointY="0.75" Height="1.5506396484374996" />
+        <EntityTypeShape EntityType="AdminModel.report" Width="1.5" PointX="3" PointY="1" Height="3.5833748372395822" />
+        <AssociationConnector Association="AdminModel.FK_Reports_questions" >
+          <ConnectorPoint PointX="1.5" PointY="5.5" />
+          <ConnectorPoint PointX="1.5" PointY="2.7916874186197909" />
+          <ConnectorPoint PointX="3" PointY="2.7916874186197909" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="AdminModel.student" Width="1.5" PointX="5.375" PointY="3.875" Height="2.1050219726562496" />
+        <AssociationConnector Association="AdminModel.FK_Reports_Students" >
+          <ConnectorPoint PointX="5.375" PointY="4.2291874186197909" />
+          <ConnectorPoint PointX="4.5" PointY="4.2291874186197909" />
+        </AssociationConnector>
+        </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
